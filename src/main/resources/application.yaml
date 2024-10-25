@@ -1,0 +1,17 @@
+ktor:
+  application:
+    modules:
+      - example.com.ApplicationKt.module
+  deployment:
+    port: 8080
+jwt:
+  domain: "https://jwt-provider-domain/"
+  audience: "jwt-audience"
+  realm: "ktor sample app"
+
+database:
+  driverClassName: "org.postgresql.Driver"
+  jdbcUrl: "jdbc:postgresql://localhost:2507/Conquer"
+  username: "roshan"
+  password: "admin"
+  transactionIsolation: "TRANSACTION_SERIALIZABLE"
