@@ -14,8 +14,8 @@ import java.time.LocalDateTime
 fun configureScheduledDeletion() {
     GlobalScope.launch(Dispatchers.Default) {
         while (true) {
-//            delay(3600000) // Wait for 1 hour (3600000 ms)
-            delay(120000) // Wait for 1 hour (3600000 ms)
+            delay(3600000) // Wait for 1 hour (3600000 ms)
+//            delay(120000) // Wait for 1 hour (3600000 ms)
             deleteOldTempVendors()
         }
     }
@@ -23,7 +23,7 @@ fun configureScheduledDeletion() {
 
 private suspend fun deleteOldTempVendors() {
     dbQuery {
-        val twentyFourHoursAgo = LocalDateTime.now().minusMinutes(2)
+        val twentyFourHoursAgo = LocalDateTime.now().minusDays(1)
         TempVendor.deleteReturning {
             TempVendor.createdAt.lessEq(twentyFourHoursAgo)
         }
